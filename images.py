@@ -4,11 +4,11 @@ from PIL import ImageTk, Image
 root = Tk()
 root.title("Images in tkinter")
 root.iconbitmap('emacs.ico')
-my_img1 = ImageTk.PhotoImage(Image.open("images/image1.jpg"))
-my_img2 = ImageTk.PhotoImage(Image.open("images/image2.jpg"))
-my_img3 = ImageTk.PhotoImage(Image.open("images/image3.jpg"))
-my_img4 = ImageTk.PhotoImage(Image.open("images/image4.jpg"))
-my_img5 = ImageTk.PhotoImage(Image.open("images/test.jpg"))
+my_img1 = ImageTk.PhotoImage(Image.open("images/img_1.jpg"))
+my_img2 = ImageTk.PhotoImage(Image.open("images/img_2.jpg"))
+my_img3 = ImageTk.PhotoImage(Image.open("images/img_3.jpg"))
+my_img4 = ImageTk.PhotoImage(Image.open("images/img_4.jpg"))
+my_img5 = ImageTk.PhotoImage(Image.open("images/img_5.jpg"))
 
 image_list = [my_img1, my_img2, my_img3, my_img4, my_img5]
 
