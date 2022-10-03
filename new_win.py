@@ -18,15 +18,19 @@ game_win = Toplevel()
 # Tey to make this work using the lambda function to pass values between 
 def myClick():
     # my_Label1 = Label(new_win,text="",padx=100,pady=100).pack()
-    # my_Label2 = Label(new_win,text= "", bg='yellow',fg='black',padx=20, pady=15).pack()
-    new_win = Toplevel()
+    global game_win
+
+    game_win.destroy()
+    game_win= Toplevel()
+    my_Label2 = Label(game_win,text= "", bg='yellow',fg='black',padx=20, pady=15).pack()
+    #new_win = Toplevel()
     dice_value = random.randint(0,5)
     my_img = image_list[dice_value]
-    my_Label1= Label(new_win,text= dice_value, bg='yellow',fg='black',padx=20, pady=15).pack()
-    my_Label2= Label(new_win,image=my_img).pack()
+    my_Label1= Label(game_win,text= dice_value, bg='yellow',fg='black',padx=20, pady=15).pack()
+    my_Label2= Label(game_win,image=my_img).pack()
     #myLabel = Label(new_win, text="Click to roll the dice")
     #myLabel.pack()
-myButton= Button(game_win, text="Click to get random picture !", command=myClick,bg='yellow')
+myButton= Button(root, text="Click to get random picture !", command=myClick,bg='yellow')
 myButton.pack(padx=20,pady=20)
 # label_1 = Label(new_win,text= "Hello world in a new window").pack()
 
