@@ -18,9 +18,7 @@ Vegetable = StringVar()
 Vegetable.set("Onion")
 
 for text, mode in MODES:
-    Radiobutton(root, text= text, variable=Vegetable, value=mode).pack()
-
-
+    Radiobutton(root, text= text, variable=Vegetable, value=mode).pack(anchor=W)
 
 def clicked(value):
     myLabel = Label(root, text= value)
@@ -31,8 +29,8 @@ def clicked(value):
 # Radiobutton(root, text="Option 3", variable= opt, value=3, command=lambda: clicked(opt.get())).pack()
 # Radiobutton(root, t,ext="Option 4", variable= opt, value=4, command=lambda: clicked(opt.get())).pack()
 
-myLabel = Label(root, text= Vegetable.get())
-myLabel.pack()
+# myLabel = Label(root, text= Vegetable.get())
+# myLabel.pack()
 myButton = Button(root, text="Click Me", command=lambda: clicked(Vegetable.get()))
 myButton.pack()
 root.mainloop()
