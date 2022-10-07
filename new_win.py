@@ -32,7 +32,7 @@ def myClick():
     #myLabel = Label(new_win, text="Click to roll the dice")
     #myLabel.pack()
 myButton= Button(root, text="Click to get random picture !", command=myClick,bg='yellow')
-myButton.pack(padx=20,pady=20)
+myButton.pack(padx=50,pady=50)
 # label_1 = Label(new_win,text= "Hello world in a new window").pack()
 
 #my_img = image_list[2]
