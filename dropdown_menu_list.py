@@ -8,7 +8,13 @@ root.iconbitmap("my_icon.ico")
 def show():
     seleced_label = Label(root, text= var_1.get()).pack()
 
-options_list = ["item_1","item_2","item_3","item_4","item_5"]    
+options_list = [
+    "item_1",
+    "item_2",
+    "item_3",
+    "item_4",
+    "item_5"
+    ]    
 
 var_1 = StringVar()
 var_1.set("default_sel")
