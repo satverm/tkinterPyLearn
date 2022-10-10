@@ -19,8 +19,24 @@ cur.execute('''CREATE TABLE  IF NOT EXISTS project (
     project_head text,
     project_duration_months intiger
     )''')
+conn.commit()
+conn.close()
 
 def append_data():
+
+    conn = sqlite3.connect('project_file.db')
+    cur = conn.cursor()
+    cur.execute("INSERT INTO project VALUES (:project_name,:val_2,:val_3, :val_4, :val_5)",
+            {
+                'project_name': project_name.get(),
+                'val_2': project_type.get(),
+                'val_3': project_cost.get(),
+                'val_4': project_head.get(),
+                'val_5': project_duration_months.get()
+            })
+    conn.commit()
+    conn.close()
+
     project_name.delete(0, END)
     project_type.delete(0, END)
     project_cost.delete(0, END)
@@ -56,9 +72,6 @@ project_duration_months_label.grid(row=4, column=0)
 submit_button = Button(root, text="Add the data in the database",command= append_data)
 submit_button.grid(row=6, column=0, columnspan=2, pady=5, padx=5, ipadx=170)
 
-conn.commit()
-
-conn.close()
 
 
 
