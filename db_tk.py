@@ -50,7 +50,7 @@ def show_rec():
     cur = conn.cursor()
     cur.execute("SELECT *, oid FROM project")
     records= cur.fetchall()
-    print(records)
+    # print(records)
     print_records = ""
     for item in records:
         print_records += str(item) + "\n"
