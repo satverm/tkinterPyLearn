@@ -9,7 +9,6 @@ root.title("Database with Tk")
 root.iconbitmap("my_icon.ico")
 root.geometry("500x500")
 
-
 # Creating database
 conn = sqlite3.connect('project_file.db')
 # create a cursor
@@ -23,6 +22,15 @@ cur.execute('''CREATE TABLE  IF NOT EXISTS project (
     )''')
 conn.commit()
 conn.close()
+
+# function to delted the data from records table
+def remove_rec():
+    conn = sqlite3.connect('project_file.db')
+    cur = conn.cursor()
+    cur.execute('''DELETE from project WHERE oid=PLACEHOLDER''')
+
+    conn.commit()
+    conn.close()
 
 def append_data():
 
@@ -50,20 +58,20 @@ def show_rec():
     cur = conn.cursor()
     cur.execute("SELECT *, oid FROM project")
     records= cur.fetchall()
-    # print(records)
-    print_records = ""
+    # print(records) we can change the print_records variable to print records in a specific way
+    print_records = ''
     for item in records:
-        print_records += str(item) + "\n"
+        print_records += str(item[0]) +" "+ str(item[1]) +"     "+str(item[5]) + "\n"
     
     records_label = Label(root, text=print_records)
-    records_label.grid(row=8, column=0, columnspan=2)
+    records_label.grid(row=11, column=0, columnspan=2)
        
     conn.commit()
     conn.close()
-    pass
 
+# These are entry boxes for user to enter the data
 project_name = Entry(root, width=30)
-project_name.grid(row=0, column=1)
+project_name.grid(row=0, column=1 , padx=20, pady=(20,0))
 project_type = Entry(root, width=30)
 project_type.grid(row=1, column=1)
 project_cost = Entry(root, width=30)
@@ -72,11 +80,13 @@ project_head = Entry(root, width=30)
 project_head.grid(row=3, column=1 )
 project_duration_months  = Entry(root, width=30)
 project_duration_months.grid(row=4, column=1)
+remove_rec_box = Entry(root, width=30)
+remove_rec_box.grid(row=9, column=1)
 
 # Now let's create the labels for these items
 
 project_name_label = Label(root,text="Project Name", width=30)
-project_name_label.grid(row=0, column=0)
+project_name_label.grid(row=0, column=0, pady=(20,0))
 project_type_label = Label(root,text= "Project Type", width=30)
 project_type_label.grid(row=1, column=0)
 project_cost_label = Label(root,text= "Project Cost", width=30)
@@ -88,11 +98,16 @@ project_duration_months_label.grid(row=4, column=0)
 
 # submit buttons for updating the database
 submit_button = Button(root, text="Add the data in the database",command= append_data)
-submit_button.grid(row=6, column=0, columnspan=2, pady=5, padx=5, ipadx=170)
+submit_button.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=98)
 
 # button to test if data has been updated
 query_btn = Button(root, text="Show reconds", command=show_rec)
-query_btn.grid(row=7, column=0, columnspan=2, padx=10, pady=10, ipadx=170)
+query_btn.grid(row=7, column=0, columnspan=2, padx=10, pady=10, ipadx=137)
+remove_rec_box_lbl= Label(root, text= "Remove record")
+remove_rec_box_lbl.grid(row=9, column=0)
+
+remove_btn = Button(root, text="Remove record ID", command=remove_rec)
+remove_btn.grid(row=10, column=0, columnspan=2, padx=10, pady=10, ipadx=134)
 
 
 
