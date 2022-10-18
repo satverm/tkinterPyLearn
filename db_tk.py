@@ -23,11 +23,12 @@ cur.execute('''CREATE TABLE  IF NOT EXISTS project (
 conn.commit()
 conn.close()
 
-# function to delted the data from records table
+# function to delte the data from records table
 def remove_rec():
     conn = sqlite3.connect('project_file.db')
     cur = conn.cursor()
-    cur.execute('''DELETE from project WHERE oid=PLACEHOLDER''')
+    # to select oid we will use " + and this way we can refer to intiger as under
+    cur.execute("DELETE from project WHERE oid = " + remove_rec_box.get())
 
     conn.commit()
     conn.close()
@@ -61,8 +62,8 @@ def show_rec():
     # print(records) we can change the print_records variable to print records in a specific way
     print_records = ''
     for item in records:
-        print_records += str(item[0]) +" "+ str(item[1]) +"     "+str(item[5]) + "\n"
-    
+        print_records += str(item[0]) +" "+ str(item[1]) +"\t"+str(item[5]) + "\n"
+    # records label contains the string print_records
     records_label = Label(root, text=print_records)
     records_label.grid(row=11, column=0, columnspan=2)
        
@@ -81,7 +82,7 @@ project_head.grid(row=3, column=1 )
 project_duration_months  = Entry(root, width=30)
 project_duration_months.grid(row=4, column=1)
 remove_rec_box = Entry(root, width=30)
-remove_rec_box.grid(row=9, column=1)
+remove_rec_box.grid(row=9, column=1, pady= 5)
 
 # Now let's create the labels for these items
 
@@ -103,10 +104,10 @@ submit_button.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=98)
 # button to test if data has been updated
 query_btn = Button(root, text="Show reconds", command=show_rec)
 query_btn.grid(row=7, column=0, columnspan=2, padx=10, pady=10, ipadx=137)
-remove_rec_box_lbl= Label(root, text= "Remove record")
-remove_rec_box_lbl.grid(row=9, column=0)
+remove_rec_box_lbl= Label(root, text= "Remove record ID")
+remove_rec_box_lbl.grid(row=9, column=0, pady=5)
 
-remove_btn = Button(root, text="Remove record ID", command=remove_rec)
+remove_btn = Button(root, text="Remove record", command=remove_rec)
 remove_btn.grid(row=10, column=0, columnspan=2, padx=10, pady=10, ipadx=134)
 
 
