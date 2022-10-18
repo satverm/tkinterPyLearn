@@ -70,6 +70,9 @@ def show_rec():
     conn.commit()
     conn.close()
 
+def save_rec():
+    pass
+
 # edit_rec to edit the database
 def edit_rec():
     edit_win = Tk()
@@ -83,13 +86,7 @@ def edit_rec():
     cur.execute("SELECT * FROM project WHERE oid = " + sel_rec_id)
     records= cur.fetchall()
     # print(records) we can change the print_records variable to print records in a specific way
-    print_records = ''
-    for item in records:
-        print_records += str(item[0]) +" "+ str(item[1]) +"\t"+str(item[4]) + "\n"
-    # records label contains the string print_records
-    records_label = Label(root, text=print_records)
-    records_label.grid(row=12, column=0, columnspan=2)
-       
+    
     conn.commit()
     conn.close()
     # These are entry boxes for user to enter the data
