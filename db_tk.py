@@ -54,6 +54,7 @@ def append_data():
     project_head.delete(0, END)
     project_duration_months.delete(0, END)
 
+
 def show_rec():
     conn = sqlite3.connect('project_file.db')
     cur = conn.cursor()
@@ -69,9 +70,6 @@ def show_rec():
        
     conn.commit()
     conn.close()
-
-def save_rec():
-    pass
 
 # edit_rec to edit the database
 def edit_rec():
@@ -121,6 +119,28 @@ def edit_rec():
         project_head_edit.insert(0, record[3])
         project_duration_months_edit.insert(0, record[4])
     
+
+    def save_rec(): # correct this to update the desired record
+
+        conn = sqlite3.connect('project_file.db')
+        cur = conn.cursor()
+        cur.execute("UPDATE project VALUES (:val_1,:val_2,:val_3, :val_4, :val_5)",
+                {
+                    'val_1': project_name_edit.get(),
+                    'val_2': project_type_edit.get(),
+                    'val_3': project_cost_edit.get(),
+                    'val_4': project_head_edit.get(),
+                    'val_5': project_duration_months_edit.get()
+                })
+        conn.commit()
+        conn.close()
+
+        project_name_edit.delete(0, END)
+        project_type_edit.delete(0, END)
+        project_cost_edit.delete(0, END)
+        project_head_edit.delete(0, END)
+        project_duration_months_edit.delete(0, END)
+
     save_btn = Button(edit_win, text='Save record', command= save_rec)
     save_btn.grid(row=5,column=0, columnspan=2, padx=10, pady=10, ipadx=143)
 
